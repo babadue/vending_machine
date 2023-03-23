@@ -1,0 +1,20 @@
+{
+  "name": "vending-machine-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 8080",
+    "lint": "next lint",
+    "compile": "solcjs --abi --include-path node_modules/ --base-path . blockchain/contracts/VendingMachine.sol --output-dir blockchain/build"
+  },
+  "dependencies": {
+    "bulma": "^0.9.4",
+    "next": "13.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "solc": "^0.8.19",
+    "web3": "^1.8.2"
+  }
+}
