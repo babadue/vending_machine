@@ -22,6 +22,7 @@ const VendingMachine = () => {
     const [donutPriceUSD, setDonutPriceUSD] = useState('')
     const [customers, setCustomers] = useState('')
     const [pricingModel, setPricingModel] = useState('')
+    const [menuType, setMenuType] = useState('')
 
     // useEffect shown upon page loaded
     useEffect(() => {
@@ -56,11 +57,13 @@ const VendingMachine = () => {
         console.log(`setRestockDisplay `)
         if (vmContract) {
             const isOwner = await vmContract.methods.isOnwer(address).call()
+            setMenuType("Vending machine inventory Customer Menu")
             if (isOwner) {
                 document.getElementById("rs").style.display = "block"  //block to display
                 document.getElementById("donut_price_eth").style.display = "block"
                 document.getElementById("donut_price_usd").style.display = "block"
                 document.getElementById("pricing_model").style.display = "block"
+                setMenuType("Vending machine inventory Owner Menu")
                 // console.log(`setOwnerMenuDisplay model 2:: ${pricingModel}`)
             }
         }
@@ -366,7 +369,7 @@ const VendingMachine = () => {
             </section>
             <section className='mt-5'>
                 <div className='container is-align-items-center is-flex '>
-                    <h2>Vending machine inventory Customer Menu</h2>
+                    <h2>{menuType}</h2>
                 </div>
             </section>
             {/* <section>
