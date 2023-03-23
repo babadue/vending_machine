@@ -366,8 +366,9 @@ const abi = [
 const vendingMachineContract = web3 => {
     return new web3.eth.Contract(
         abi,
-        "0xyourcontractif"
-        // need the contract id after deployed here
+        "0x3B1A95264F117BeAADa86372A9727d5d6F4374B6"  //replace this with yours
+        // "put your smart contract id here after deployed"
+        // need the contract id after deployvendingMachineContracted here
 
     )
 
