@@ -39,6 +39,7 @@ contract VendingMachine {
         donutBalances[address(this)] = 200;
         donutPriceEth[address(this)] = 0.01 * 10 ** 18;  //in wei
         donutPriceUSD[address(this)] = 20 * 10 ** 18;  //$20 * 10 * 18 beause assume in wei
+        // pricingModel[address(this)] = PricingModel.usdBased;
         pricingModel[address(this)] = PricingModel.ethBased;
         priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
         this_address = address(this);
@@ -123,15 +124,35 @@ contract VendingMachine {
         uint256 donut_price = donutPriceEth[address(this)];
         if (pricingModel[address(this)] == PricingModel.usdBased)
         {
-            donut_price = donutPriceUSD[address(this)] / 1816; //getPrice();
+            donut_price = donutPriceUSD[address(this)] / 1776; //getPrice();
         }
 
         return (amount * donut_price, donut_price, amount) ;
     }
 
-    function multiplication(uint256 a, uint256 b) public pure returns (uint256) 
+    function multiplication(uint256 a, uint256 b) public pure returns (uint256)
     {
         return a * b;
+    }
+
+    function division(uint256 a, uint256 b) public pure returns (uint256) 
+    {
+        return  a / b;
+    }
+
+    function divisionToWei(uint256 a, uint256 b) public pure returns (uint256) 
+    {
+        return  a * 10 ** 18 / b;
+    }
+
+    function addition(uint256 a, uint256 b) public pure returns (uint256) 
+    {
+        return  a + b;
+    }
+
+    function substraction(uint256 a, uint256 b) public pure returns (uint256) 
+    {
+        return  a - b;
     }
 
     function getPrice() public view returns (uint256) {

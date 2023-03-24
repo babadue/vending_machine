@@ -10,6 +10,30 @@ const abi = [
         "inputs": [
             {
                 "internalType": "uint256",
+                "name": "a",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "b",
+                "type": "uint256"
+            }
+        ],
+        "name": "addition",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
             }
@@ -43,6 +67,54 @@ const abi = [
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "a",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "b",
+                "type": "uint256"
+            }
+        ],
+        "name": "division",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "a",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "b",
+                "type": "uint256"
+            }
+        ],
+        "name": "divisionToWei",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
         "type": "function"
     },
     {
@@ -364,6 +436,30 @@ const abi = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "a",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "b",
+                "type": "uint256"
+            }
+        ],
+        "name": "substraction",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "this_address",
         "outputs": [
@@ -419,7 +515,7 @@ const abi = [
 const vendingMachineContract = web3 => {
     return new web3.eth.Contract(
         abi,
-        "0x730f4D3852928be0A7C3fcc21C35DF1c6E7c162F"
+        "0x5Dd51461215a4172C461589F555838b791E37B1c"
         // "put your smart contract id here after deployed"
         // need the contract id after deployvendingMachineContracted here
 
