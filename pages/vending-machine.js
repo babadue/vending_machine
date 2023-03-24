@@ -42,9 +42,11 @@ const VendingMachine = () => {
         if (vmContract) {
             const price = await vmContract.methods.getPrice().call()
             console.log(`getCurrentEthPrice eth price :: ${price}`)
-            // setEthPrice(price / 100)
+            // setEthPrice('1500')
             setEthPrice(price)
-            console.log(`getCurrentEthPrice ethPrice in USD :: $${ethPrice}`)
+            // setEthPrice(1500)
+            // console.log(`getCurrentEthPrice ethPrice in USD :: ${ethPrice}`)
+            // console.log(`getCurrentEthPrice donutPriceUSD: ${price}  ethPrice: ${ethPrice}`)
         }
     }
 
@@ -158,20 +160,62 @@ const VendingMachine = () => {
                 break
             case 1:
                 donut_price = donutPriceUSD / ethPrice
+                console.log(`buyDonutsHandler donutPriceUSD: ${donutPriceUSD}  ethPrice: ${ethPrice} donut_price: ${donut_price}`)
                 break
             default:
                 console.log('buyDonutsHandler error')
         }
         try {
-            await vmContract.methods.purchase(buyCount).send({
+            // await vmContract.methods.purchase(buyCount).send({
+            const labs = await vmContract.methods.purchase(buyCount).send({
                 from: address,
-                value: web3.utils.toWei(donut_price.toString(), 'ether') * buyCount
+                // value: web3.utils.toWei(donut_price.toString(), 'ether') * buyCount
+                value: await vmContract.methods.multiplication(buyCount, web3.utils.toWei((donut_price).toString(), 'ether')).call()
             })
             getInventoryHandler()
             getMyDonutCountHandler()
             setSuccessMsg(`${buyCount} donuts purchased!!!`)
             document.getElementById("bd_box").value = ""
             console.log(`buy ${buyCount} at ${donut_price} eth per donut for ${donut_price * buyCount} eth.`)
+        } catch (err) {
+            setError(err.message)
+        }
+    }
+
+    const buyDonutsHandler_lab = async () => {
+        const ans = 11013215859030837 * 3
+        // 33039647577092508  for 837
+        //33039647577092511   for 838
+        console.log(`buyDonutsHandler ans: ${ans}`)
+        let donut_price = 0
+        switch (Number(pricingModel)) {
+            case 0:
+                donut_price = donutPriceEth
+                break
+            case 1:
+                donut_price = donutPriceUSD / 1816 //ethPrice  //eth
+                console.log(`buyDonutsHandler donutPriceUSD: ${donutPriceUSD}  ethPrice: ${ethPrice} donut_price: ${donut_price}`)
+                break
+            default:
+                console.log('buyDonutsHandler error')
+        }
+        try {
+            // await vmContract.methods.purchase(buyCount).send({
+            const product = await vmContract.methods.multiplication(buyCount, web3.utils.toWei((donut_price).toString(), 'ether')).call()
+            const labs = await vmContract.methods.getCostOfPurchaseInWei2(buyCount).call()
+
+            const msgValueWeb = web3.utils.toWei((donut_price * buyCount).toString(), 'ether')
+            console.log(`buyDonutsHandler:: msgValueWeb: ${msgValueWeb} wei product: ${product}`)
+            // const msgValue = donut_price * 10 ** 18 * buyCount
+            const msgValue = donut_price * buyCount
+            console.log(`msgValue:: ${msgValue} wei`)
+            // })
+            // getInventoryHandler()
+            // getMyDonutCountHandler()
+            // setSuccessMsg(`${buyCount} donuts purchased!!!`)
+            document.getElementById("bd_box").value = ""
+            console.log(`buyDonutsHandler::  buyCoount: ${buyCount} donut_price: ${donut_price}eth total cost: ${donut_price * buyCount}`)
+            console.log(`buyDonutsHandler labs :: ${JSON.stringify(labs)}`)
         } catch (err) {
             setError(err.message)
         }

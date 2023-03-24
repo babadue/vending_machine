@@ -116,6 +116,35 @@ const abi = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "getCostOfPurchaseInWei2",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalAmount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "donut_price1",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount1",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "getCustomers",
         "outputs": [
@@ -237,6 +266,30 @@ const abi = [
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "a",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "b",
+                "type": "uint256"
+            }
+        ],
+        "name": "multiplication",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
         "type": "function"
     },
     {
@@ -366,7 +419,7 @@ const abi = [
 const vendingMachineContract = web3 => {
     return new web3.eth.Contract(
         abi,
-        "0x3B1A95264F117BeAADa86372A9727d5d6F4374B6"  //replace this with yours
+        "0x730f4D3852928be0A7C3fcc21C35DF1c6E7c162F"
         // "put your smart contract id here after deployed"
         // need the contract id after deployvendingMachineContracted here
 
